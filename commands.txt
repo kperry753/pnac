@@ -1,1 +1,2 @@
 git remove -r somefiles*.txt
+ipython -i bla
