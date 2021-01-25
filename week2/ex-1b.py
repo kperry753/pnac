@@ -18,40 +18,42 @@ cisco4 = {
 net_connect = ConnectHandler(**cisco4)
 print(net_connect.find_prompt())
 
-pingLines = [
-    {
+pingLines = {
+    1: {
         "command" : "ping", 
         "expect" : r"foo",
     },
-    {
+    2: {
         "command" : "ip",
-        "expect" : r""
+        "expect" : r"word"
     },
-    {
+    3: {
         "command" : "8.8.8.8",
-        "expect": r""
+        "expect": r"word"
     },
-    {
+    4: {
         "command" : "line4",
-        "expect": r""
+        "expect": r"word"
     },
-    {
+    5: {
         "command" : "100",
-        "expect": r""
+        "expect": r"word"
     },
-    {
+    6: {
         "command": "2",
-        "expect": r""
+        "expect": r"word"
     },
-    {
-        "command": "",
-        "expect": r""
+    7: {
+        "command": "3",
+        "expect": r"puncline"
     },
-    ]
+    }
 
 output = ""
-for line in pingLines:
-    output += net_connect.send_command(pingLines.get("command"), expect_string = pingLines.get("expect"),strip_prompt=False, strip_command=False)    
+for key, value in iter(sorted(pingLines.items())):
+    #output += net_connect.send_command(command, expect_string = expect,strip_prompt=False, strip_command=False)    
+    print(key)
+    print(value)
 
 print(output)
 net_connect.disconnect()
